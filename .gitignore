@@ -1,0 +1,5 @@
+plan.md
+*.swp
+*.swo
+*~
+tmux-fridge
