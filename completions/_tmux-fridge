@@ -1,0 +1,48 @@
+#compdef tmux-fridge
+
+_tmux-fridge() {
+	local -a commands
+	commands=(
+		'freeze:Freeze a session'
+		'unfreeze:Unfreeze a frozen session'
+		'attach:Snapshot and attach to a session'
+		'recover:Recover a session from cold storage'
+		'snapshot:Snapshot a session without killing it'
+		'clean:Remove a cold storage snapshot'
+		'clean-all:Remove all cold storage snapshots'
+		'list-frozen:List frozen sessions'
+		'list-cold:List recoverable sessions'
+		'list-cold-all:List all cold storage snapshots'
+	)
+
+	_arguments -C \
+		"1:command:->command" \
+		"*::arg:->args"
+
+	case $state in
+		command)
+			_describe 'command' commands
+			;;
+		args)
+			case $words[1] in
+				freeze|attach|snapshot)
+					local -a sessions
+					sessions=(${(f)"$(tmux list-sessions -F '#{session_name}' 2>/dev/null)"})
+					compadd -a sessions
+					;;
+				unfreeze)
+					local -a frozen
+					frozen=(${(f)"$(tmux-fridge list-frozen 2>/dev/null)"})
+					compadd -a frozen
+					;;
+				recover|clean)
+					local -a cold
+					cold=(${(f)"$(tmux-fridge list-cold-all 2>/dev/null)"})
+					compadd -a cold
+					;;
+			esac
+			;;
+	esac
+}
+
+_tmux-fridge "$@"
