@@ -1,4 +1,7 @@
-# tmux-fridge
+<div align="center">
+  <img src="readme-assets/tmux-fridge-logo.png" alt="tmux-fridge" width="128">
+  <h1>tmux-fridge</h1>
+</div>
 
 A lightweight CLI tool for snapshotting, freezing, and restoring tmux sessions — with automatic cold storage backups for disaster recovery. Written in Go with zero runtime dependencies.
 
