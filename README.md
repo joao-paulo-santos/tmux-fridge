@@ -1,9 +1,9 @@
 <div align="center">
-  <img src="readme-assets/tmux-fridge-logo.png" alt="tmux-fridge" width="128">
+  <img src="readme-assets/tmux-fridge-logo.png" alt="tmux-fridge" width="192">
   <h1>tmux-fridge</h1>
 </div>
 
-A lightweight CLI tool for snapshotting, freezing, and restoring tmux sessions — with automatic cold storage backups for disaster recovery. Written in Go with zero runtime dependencies.
+A lightweight CLI tool for snapshotting, freezing, and restoring tmux sessions with automatic cold storage backups for disaster recovery. Written in Go with zero runtime dependencies.
 
 ## Why?
 
@@ -22,7 +22,7 @@ tmux-fridge manages session state as YAML files on disk in two directories:
   └── cold-storage/    # Automatic snapshots (created on freeze/attach/unfreeze)
 ```
 
-Cold storage is updated automatically whenever you freeze, attach, or unfreeze a session — so you always have a recent snapshot to recover from.
+Cold storage is updated automatically whenever you freeze, attach, or unfreeze a session, so you always have a recent snapshot to recover from.
 
 ## Commands
 
