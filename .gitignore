@@ -3,3 +3,4 @@ plan.md
 *.swo
 *~
 tmux-fridge
+dist/

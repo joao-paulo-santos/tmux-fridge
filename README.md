@@ -77,17 +77,48 @@ tmux-fridge recover my-project
 tmux-fridge list-frozen | fzf --prompt="Unfreeze: " | xargs -r tmux-fridge unfreeze
 ```
 
-## Build & Install
+## Install
+
+### Binary (recommended)
+
+Download the latest release for your platform from [releases](https://github.com/joao-paulo-santos/tmux-fridge/releases/latest):
 
 ```bash
+curl -sL https://github.com/joao-paulo-santos/tmux-fridge/releases/latest/download/tmux-fridge_$(uname -s)_$(uname -m).tar.gz | tar xz -C ~/.local/bin
+```
+
+Or download manually from the [releases page](https://github.com/joao-paulo-santos/tmux-fridge/releases/latest).
+
+### From source
+
+```bash
+go install github.com/joao-paulo-santos/tmux-fridge@latest
+```
+
+### Build from source
+
+```bash
+git clone https://github.com/joao-paulo-santos/tmux-fridge.git
+cd tmux-fridge
 go build -o ~/.local/bin/tmux-fridge .
 ```
 
-The binary is self-contained — no runtime dependencies beyond tmux itself.
+## Configuration
+
+Optional config file at `~/.config/tmux/tmux-workspaces/config.yaml`:
+
+```yaml
+# Resolve apps running behind interpreters (node, python, ruby).
+# Reads /proc to detect the actual binary (e.g. opencode behind node).
+resolve_interpreters: false
+
+# Transform captured commands during freeze.
+command_map:
+  opencode: opencode -c
+```
 
 ## Requirements
 
-- Go 1.21+
 - tmux
 
 ## License
